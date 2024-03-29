@@ -20,11 +20,8 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .task label {
-            margin-right: 10px;
-        }
-
+            margin-right: 10px;  }
         .task button {
             background-color: #ff6666;
             color: white;
@@ -32,16 +29,13 @@
             padding: 5px 10px;
             cursor: pointer;
         }
-
         #filter {
             margin-top: 10px;
         }
     </style>
 </head>
 <body>
-
     <h1>Website Project To-Do List</h1>
-
     <div>
         <label for="newTask">New Task:</label>
         <input type="text" id="newTask" placeholder="Enter task...">
@@ -55,11 +49,9 @@
         <input type="date" id="deadline">
         <button onclick="addTask()">Add Task</button>
     </div>
-
     <div id="tasks">
         <!-- Tasks will be dynamically added here -->
     </div>
-
     <div id="filter">
         <label for="priorityFilter">Filter by Priority:</label>
         <select id="priorityFilter" onchange="filterTasks()">
@@ -72,23 +64,18 @@
         <label for="deadlineFilter">Filter by Deadline:</label>
         <input type="date" id="deadlineFilter" onchange="filterTasks()">
     </div>
-
     <script>
         let tasks = [];
-
         function addTask() {
             const newTaskInput = document.getElementById('newTask');
             const taskText = newTaskInput.value.trim();
             const priority = document.getElementById('priority').value;
             const deadline = document.getElementById('deadline').value;
-
             if (taskText !== '') {
                 const task = {
                     text: taskText,
                     priority: priority,
-                    deadline: deadline
-                };
-
+                    deadline: deadline  };
                 tasks.push(task);
                 newTaskInput.value = ''; // Clear the input field
                 document.getElementById('priority').value = 'high'; // Reset priority to default
@@ -96,29 +83,22 @@
                 displayTasks();
             }
         }
-
         function removeTask(index) {
             tasks.splice(index, 1);
             displayTasks();
         }
-
         function filterTasks() {
             const priorityFilter = document.getElementById('priorityFilter').value;
             const deadlineFilter = document.getElementById('deadlineFilter').value;
-
             let filteredTasks = tasks;
-
             if (priorityFilter !== 'all') {
                 filteredTasks = filteredTasks.filter(task => task.priority === priorityFilter);
             }
-
             if (deadlineFilter !== '') {
                 filteredTasks = filteredTasks.filter(task => task.deadline === deadlineFilter);
             }
-
             displayTasks(filteredTasks);
         }
-
         function displayTasks(filteredTasks = tasks) {
             const tasksContainer = document.getElementById('tasks');
             tasksContainer.innerHTML = ''; // Clear previous tasks
@@ -128,12 +108,10 @@
                 taskElement.classList.add('task');
                 taskElement.innerHTML = `
                     <label>${task.text} - Priority: ${task.priority} - Deadline: ${task.deadline}</label>
-                    <button onclick="removeTask(${index})">Remove</button>
-                `;
+                    <button onclick="removeTask(${index})">Remove</buttoN;
                 tasksContainer.appendChild(taskElement);
             });
         }
     </script>
-
 </body>
 </html>
